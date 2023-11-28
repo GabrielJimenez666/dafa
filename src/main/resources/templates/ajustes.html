@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head th:replace="layout/plantilla :: head(${'Ajustes'})">
+        <title>Ajustes</title>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+        <h2 class="card-title text-center mb-2 mt-4">
+            <i class="fas fa-cogs"></i> Ajustes
+        </h2>
+        <div class="container mt-2">
+            <div class="row justify-content-center">
+
+                <div class="col-md-5">
+
+                    <div class="card text-center">
+
+                        <div class="card-body">
+                            <!-- Botón de Información personal -->
+                            <div class="mb-3">
+                                <a th:href="@{/ir_info}" class="btn btn-success w-100">
+                                    <i class="fa fa-info-circle mr-2"></i>Información personal
+                                </a>
+                            </div>
+                            <!-- Botón de Cambiar Usuario -->
+                            <div class="mb-3">
+                                <a th:href="@{/ir_cambiar_usuario}" class="btn btn-info w-100">
+                                    <i class="fa fa-user mr-2"></i>Cambiar Usuario
+                                </a>
+                            </div>
+                            <!-- Botón de Cambiar correo electronico -->
+                            <div class="mb-3">
+                                <a th:href="@{/ir_cambiar_correo}" class="btn btn-secondary w-100">
+                                    <i class="fas fa-envelope mr-2"></i>Cambiar correo electronico
+                                </a>
+                            </div>
+                            <!-- Botón de Cambiar contraseña -->
+                            <div class="mb-3">
+                                <a th:href="@{/cambiar_contra}" class="btn btn-primary w-100">
+                                    <i class="fa fa-lock mr-2"></i>Cambiar contraseña
+                                </a>
+                            </div>
+                            <!-- Botón de Cerrar -->
+                            <div class="mb-3">
+                                <a th:href="@{/ir_eliminar_cuenta}" class="btn btn-danger w-100">
+                                    <i class="fa fa-times-circle mr-2"></i>Cerrar tu Cashflow
+                                </a>
+                            </div>
+                            <!-- Botón de Regresar-->
+                            <div class="mb-3">
+                                <a th:href="@{/regresar_menu}" class="btn btn-warning w-100">
+                                    <i class="fa fa-arrow-circle-left mr-2"></i>Regresar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer th:replace="layout/plantilla :: footer"></footer>
+    </body>
+</html>

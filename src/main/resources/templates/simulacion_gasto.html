@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+    <head th:replace="layout/plantilla :: head(${'Simulacion Gasto'})">
+        <title>Simulacion Gasto</title>
+        <meta charset="UTF-8"/>
+        <style>
+            .bolsillo-container {
+                display: none;
+            }
+            input[type="radio"][name="metodo_pago"][value="con_bolsillo"]:checked + .bolsillo-container {
+                display: block;
+            }
+        </style>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+        <!-- Titulo -->
+        <div class="text-center mt-2">
+            <h2>
+                <i class="fas fa-hand-holding-usd mr-2"></i>Simulación de gasto</h2>
+        </div>
+        <div class="container my-2">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-md-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <form method="post" th:action="@{/simulacion_gasto}">
+                                <!-- Ingrese el monto + input -->
+                                <div class="mb-3">
+                                    <label for="monto" class="form-label">Ingrese el monto del gasto:</label>
+                                    <input type="text" class="form-control" id="monto" name="monto" required="required" />
+                                </div>
+                                <div class="mb-3">
+                                    <!-- Elija el método de pago + opciones -->
+                                    <label for="metodo_pago" class="form-label">Elija el método de pago para el gasto:</label>
+                                    <select class="form-control" id="metodo_pago" name="metodo_pago" required>
+                                        <option value="-1" selected>Saldo principal</option>
+                                        <option th:each="bolsillo : ${user.getBolsillos}" 
+                                                th:value="${bolsillo.id}" 
+                                                th:text="${bolsillo.nombre} + ' (bolsillo)'">
+                                        </option>
+                                    </select>
+                                </div>
+                                <!-- Botones Generar gasto + Regresar -->
+                                <div class="text-center">
+                                    <button type="submit" name="ejecutar" class="btn btn-primary">
+                                        <i class="fas fa-dollar-sign mr-2"></i>Generar gasto manual
+                                    </button>
+                                    <a th:href="@{/ir_simulacion}" class="btn btn-warning">
+                                        <i class="fa fa-arrow-circle-left mr-2"></i>Regresar
+                                    </a>
+                                </div>
+                                <!-- Mensaje de error -->
+                                <div th:if="${advertencia2 != null and !advertencia2.isEmpty()}" 
+                                     class="alert alert-warning text-center" role="alert">
+                                    <span class="fs-5" th:text="${advertencia2}"></span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+        <footer th:replace="layout/plantilla :: footer"></footer>
+    </body>
+</html>

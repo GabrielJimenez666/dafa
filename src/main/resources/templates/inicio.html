@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Inicio</title>
+        <meta charset="UTF-8"/>
+        <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+        <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}"/>
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+        <style>
+            body {
+                background-color: #cccccc;
+                color: #333;
+                font-family: 'Roboto', sans-serif;
+            }
+            .container {
+                padding: 2rem 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+            .welcome-section {
+                text-align: center;
+                margin-bottom: 2rem;
+            }
+            .features-section {
+                display: flex;
+                justify-content: space-around;
+                flex-wrap: wrap;
+            }
+            .feature {
+                max-width: 500px;
+                background: #FFF;
+                padding: 1rem;
+                border-radius: 0.5rem;
+                margin: 0.5rem;
+                display: flex;
+                align-items: center;
+            }
+            .feature-icon {
+                font-size: 3rem;
+                color: #ffd700;
+                margin-right: 1rem;
+            }
+            .feature h4 {
+                margin-bottom: 0.5rem;
+            }
+            .btn-custom {
+                background-color: #ffd700; /* el color de tu botón */
+                color: #333;
+                padding: 0.75rem 2rem;
+                border-radius: 2rem;
+                font-size: 1rem;
+                margin: 0.5rem;
+                text-decoration: none; /* si es un enlace */
+            }
+            .footer {
+                background-color: #333;
+                color: #fff;
+                text-align: center;
+                padding: 1rem 0;
+                width: 100%;
+                bottom: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <!-- Cashflow -->
+            <div>
+                <a th:href="@{/login}" class="btn btn-custom btn-lg mb-2">Iniciar Sesión</a>
+                <a th:href="@{/registro}" class="btn btn-custom btn-lg mb-2">Crear cuenta</a>  
+            </div>
+            <div class="mt-2">
+                <h1><i class="fas fa-piggy-bank mr-2"></i>CASHFLOW</h1>
+            </div>
+            <div>
+                <p>El lugar perfecto para manejar tu dinero y cumplir todas tus metas financieras.</p>
+            </div>
+            <!-- cards! -->
+            <div class="features-section">
+                <div class="feature">
+                    <i class="fas fa-lock feature-icon"></i>
+                    <div>
+                        <h4>Transferencias seguras</h4>
+                        <p>Seguridad en cada movimiento que realices, además de un historial claro y preciso.</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-chart-line feature-icon"></i>
+                    <div>
+                        <h4>Metas</h4>
+                        <p>CASHFLOW te ayudará a proponer y cumplir tus metas financieras de ahorro y más.</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-user-tie    feature-icon"></i>
+                    <div>
+                        <h4>Equipo</h4>
+                        <p>Contamos con un equipo pequeño de desarrolladores de software encargados del mantenimiento y  mejoras de la web.</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-phone-square feature-icon"></i>
+                    <div>
+                        <h4>Contáctanos</h4>
+                        <p>Si tienes alguna duda sobre la empresa o de la misma pagina web, no dudes en ponerte en contacto con nosotros +57 3045722538.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+            <p>CASHFLOW ©2023</p>
+        </footer>
+    </body>
+</html>
+
+
+
+

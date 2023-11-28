@@ -1,0 +1,69 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+
+    <head th:replace="layout/plantilla :: head(${'Movimientos'})">
+        <title>Movimientos</title>
+        <meta charset="UTF-8" />
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+        <div class="container mt-4">
+            <h2 class="text-center mb-3">
+                <i class="fas fa-list mr-2"></i>Movimientos
+            </h2>
+            <div class="text-center mb-4">
+            </div>
+            <!-- Si HAY transacciones! -->
+            <div th:if="${user.getTransacciones != null and !user.getTransacciones.empty}">
+                <div class="container mt-4">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-4 col-md-6">
+                            <table class="table">
+                                <thead class='thead-dark text-center'>
+                                    <tr>
+                                        <th>Fecha</th>
+                                        <th>Tipo</th>
+                                        <th>Monto</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="transaccion : ${user.transacciones}">
+                                        <td th:text="${transaccion.getFecha}"></td>
+                                        <td th:text="${transaccion.getTipo}"></td>
+                                        <td th:text="${transaccion.getMonto}"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Si NO hay transacciones! -->
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <div th:if="${user.getTransacciones == null or user.getTransacciones.empty}"
+                         class="alert alert-info text-center">
+                        <p>El usuario no tiene ningún movimiento actualmente.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Botones descargar transacciones + Regresar -->
+            <div class="text-center mt-4 mb-4">
+                <a th:href="@{/descargar}" download="transacciones.csv" class="btn btn-primary">
+                    <i class="fa fa-download"></i> Descargar Transacciones
+                </a>
+                <a th:href="@{/descargar_ingresos}" download="transacciones_ingresos.csv"
+                   class="btn btn-success">
+                    <i class="fa fa-download"></i> Descargar Ingresos
+                </a>
+                <a th:href="@{/descargar_gastos}" download="transacciones_gastos.csv"
+                   class="btn btn-danger">
+                    <i class="fa fa-download"></i> Descargar Gastos
+                </a>
+                <a th:href="@{/regresar_menu}" class="btn btn-warning">
+                    <i class="fa fa-arrow-circle-left"></i> Regresar
+                </a>
+            </div>
+        </div>
+        <footer th:replace="layout/plantilla :: footer"></footer>
+    </body>
+</html>

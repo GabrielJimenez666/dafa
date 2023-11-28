@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+
+    <head th:replace="layout/plantilla :: head(${'Informacion personal'})">
+        <title>Informacion personal</title>
+        <meta charset="UTF-8" />
+    </head>
+
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+        <div class="mt-4">
+            <section th:replace='layout/infoClientes :: infoClientes'></section>
+        </div>
+        <div class="text-center mt-2">
+            <a th:href="@{/regresar_ajustes}" class="btn btn-warning">
+                <i class="fa fa-arrow-circle-left mr-2"></i>Regresar
+            </a>
+        </div>
+        <footer th:replace="layout/plantilla :: footer"></footer>
+    </body>
+
+</html>

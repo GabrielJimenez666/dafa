@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head th:replace="layout/plantilla :: head(${'Notificaciones'})">
+        <title>Notificaciones</title>
+        <meta charset="UTF-8" />
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+        <div class="container mt-4">
+            <!-- Titulo -->
+            <div class="container">
+                <h2 class="text-center"> 
+                    <i class="fas fa-bell mr-2"></i>Notificaciones</h2>
+                <!-- Mensaje si NO hay notificaciones -->
+                <div class="row justify-content-center">
+                    <div class="col-md-5">
+                        <div th:if="${user.notificaciones == null or user.notificaciones.empty}" class="alert alert-info text-center">
+                            <span>El usuario no tiene ninguna notificación actualmente.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Tabla de notificaciones -->
+            <div th:if="${user.notificaciones != null and !user.notificaciones.empty}">
+                <div class="container mt-4">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <table class='table table-hover'>
+                                <thead class='thead-dark text-center'>
+                                    <tr>
+                                        <th>Notificación</th>
+                                        <th>Leído</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="notificacion : ${user.getNotificaciones}">
+                                        <td th:text="${notificacion.getMensaje}"></td>
+                                        <td>
+                                            <a th:href="@{/eliminar_notificacion/{id}(id=${notificacion.getId})}" class="btn btn-success btn-sm">
+                                                <i class="fas fa-check"></i> Marcar como leído
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Botón Regresar -->
+            <div class="text-center mb-4">
+                <a th:href="@{/regresar_menu}" class="btn btn-warning">
+                    <i class="fa fa-arrow-circle-left mr-2"></i>Regresar
+                </a>
+            </div>
+        </div>
+        <footer th:replace="layout/plantilla :: footer"></footer>
+    </body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+    <head th:replace="layout/plantilla :: head(${'Metas'})">
+        <title>Metas</title>
+        <meta charset="UTF-8" />
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+        <div class="container mt-4">
+            <!-- Titulo -->
+            <div class="container">
+                <h2 class="text-center">
+                    <i class="fas fa-flag-checkered mr-2"></i>Metas
+                </h2>
+                <!-- Mensaje si NO hay metas -->
+                <div class="row justify-content-center">
+                    <div class="col-md-5">
+                        <div th:if="${user.metas == null or user.metas.empty}" class="alert alert-info text-center">
+                            <span>El usuario no tiene ninguna meta establecida actualmente.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Tabla de las metas -->
+            <div th:if="${user.metas != null and !user.metas.empty}">
+                <div class="container mt-4">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <table class='table table-hover'>
+                                <thead class='thead-dark text-center'>
+                                    <tr>
+                                        <th>Meta, fecha limite, Monto deseado</th>
+                                        <th>Saldo</th>
+                                        <th>Estado</th>
+                                        <th>Eliminar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="meta : ${user.getMetas}">
+                                        <td th:text="${meta.getNombre} + ', ' + ${meta.getFecha_limite} + ', $' +${meta.getMonto_objetivo}">
+                                        </td>
+                                        <td class="text-center" th:text="'$'+${meta.getSaldo == 0 ? '0,00' : #numbers.formatDecimal(meta.getSaldo, 0, 'POINT', 2, 'COMMA')}"></td>
+                                        <td class="text-center" th:text="${meta.getEstado} + '%'"></td>
+                                        <td>
+                                            <a th:href="@{/eliminar_meta/{id}(id=${meta.getId})}" class="btn btn-danger btn-sm">
+                                                <i class="fas fa-times-circle mr-2"></i> Eliminar meta
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Botón Depositar dinero -->
+            <div th:if="${user.metas != null and !user.metas.empty}" class="text-center mb-4">
+                <a th:href="@{/ir_agregar_saldo_meta}"  class="btn btn-success">
+                    <i class="fa fa-wallet mr-2"></i>Depositar dinero en una meta
+                </a>
+            </div>
+            <!-- Botón crear meta + Regresar-->
+            <div class="text-center d-grid gap-2">
+                <a th:href="@{/ir_crear_meta}" class="btn btn-primary">
+                    <i class="fa fa-flag-checkered mr-2"></i>Crear Meta
+                </a>
+                <a th:href="@{/regresar_menu}" class="btn btn-warning">
+                    <i class="fa fa-arrow-circle-left mr-2"></i>Regresar
+                </a>
+            </div>
+        </div>
+        <footer th:replace="layout/plantilla :: footer"></footer>
+    </body>
+</html>

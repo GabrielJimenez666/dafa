@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Listado Bolsillos</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <section th:fragment="infoBolsillos" id="bolsillos">
+            <div class="container">
+                <div class=' text-center'>
+                    <h2><i class="fas fa-wallet mr-2"></i>[[#{bolsillos.titulo-lista}]]</h2>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-9 mx-auto">
+                        <div class='card'>
+
+                            <div class="card-body">
+                                <!-- Mensaje de alerta -->
+                                <div class="container">
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-8">
+                                            <div th:if="${user.bolsillos == null or user.bolsillos.empty}" 
+                                                 class="alert alert-warning text-center py-2" role="alert">
+                                                <span class="fs-5">El usuario no tiene ningún bolsillo actualmente.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Tabla de bolsillos -->
+                                <table class='table table-striped text-center '>
+                                    <thead class='thead-dark'>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Saldo</th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="bolsillo : ${user.bolsillos}">
+                                            <td>[[${bolsillo.getNombre}]]</td>
+                                            <td>
+                                                <i class="fas fa-dollar-sign"></i>
+                                                <span th:text="${bolsillo.getSaldo == 0 ? '0,00' : #numbers.formatDecimal(bolsillo.getSaldo, 0, 'POINT', 2, 'COMMA')}"></span>
+                                            </td>
+
+                                            <td>
+                                                <a th:href="@{/vaciar_bolsillo/{id}(id=${bolsillo.getId})}" class="btn btn-success btn-sm">
+                                                    <i class="fas fa-angle-double-right"></i> [[#{accion.vaciar}]]
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a th:href="@{/eliminar_bolsillo/{id}(id=${bolsillo.getId})}" class="btn btn-danger btn-sm">
+                                                    <i class="fas fa-angle-double-right"></i> [[#{accion.eliminar}]]
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>                     
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </body>
+</html>

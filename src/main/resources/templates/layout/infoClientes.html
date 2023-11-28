@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Info Clientes</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <section th:fragment="infoClientes" id="clientes">
+            <h2 class="card-title text-center mb-2">
+                <i class="fas fa-info-circle"></i> [[#{persona.titulo-lista}]]
+            </h2>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-5 mx-auto">
+                        <div class='card'>  
+                            <div class="card-body">
+                                <table class='table table-striped'>
+                                    <tr>
+                                        <th th:text='#{persona.id}'>ID</th>
+                                        <td>[[${user.getId}]]</td>
+                                    </tr>
+                                    <tr>
+                                        <th th:text='#{persona.usuario}'>Usuario</th>
+                                        <td>[[${user.getUsuario}]]</td>
+                                    </tr>
+                                    <tr>
+                                        <th th:text='#{persona.contraseña}'>Contraseña</th>
+                                        <td>[[${user.getContrasena}]]</td>
+                                    </tr>
+                                    <tr>
+                                        <th th:text='#{persona.email}'>Email</th>
+                                        <td>[[${user.getEmail}]]</td>
+                                    </tr>
+                                    <tr>
+                                        <th th:text='#{persona.fi}'>Fecha de Ingreso</th>
+                                        <td>[[${user.getFecha_ingreso}]]</td>
+                                    </tr>
+                                    <tr>
+                                        <th th:text='#{persona.saldo}'>Saldo</th>
+                                        <td>[[${user.getSaldo}]]</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>                     
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
